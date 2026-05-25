@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(c:\\\\Users\\\\Lalitha\\\\Downloads\\\\expense-tracker\\\\expense-tracker\\\\venv\\\\Scripts\\\\activate.bat)"
+    ]
+  }
+}
