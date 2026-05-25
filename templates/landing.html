@@ -68,6 +68,23 @@
     </div>
 </section>
 
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">×</button>
+        <div class="modal-video-wrapper">
+            <iframe
+                id="demoVideo"
+                class="modal-video"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Spendly Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
 <section class="features">
     <div class="features-inner">
         <div class="feature-card">
@@ -96,4 +113,39 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const modal = document.getElementById('videoModal');
+    const closeBtn = document.querySelector('.modal-close');
+    const videoIframe = document.getElementById('demoVideo');
+    const videoButton = document.querySelector('a[href="{{ url_for("login") }}"].btn-secondary');
+
+    if (videoButton) {
+        videoButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('open');
+        });
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.classList.remove('open');
+        const currentSrc = videoIframe.src;
+        videoIframe.src = currentSrc;
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+            closeModal();
+        }
+    });
+</script>
 {% endblock %}
